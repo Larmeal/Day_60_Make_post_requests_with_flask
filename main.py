@@ -15,8 +15,15 @@ def homepage():
 def about():
     return render_template("about.html")
 
-@app.route("/Contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
+    if request.method == "POST":
+        data = request.form
+        print(data["name"])
+        print(data["email"])
+        print(data["phone"])
+        print(data["message"])
+        return "<h1>Successfully sent your message</h1>"
     return render_template("contact.html")
 
 @app.route("/post/<int:id>")
@@ -24,18 +31,7 @@ def post(id):
     port_number = content[id - 1]
     return render_template("post.html", articles=port_number)
 
-@app.route("/form-entry", methods=["post"])
-def receive_data():
-    name = request.form["username"]
-    email = request.form["email"]
-    phone = request.form["number"]
-    message = request.form["message"]
-    return f"""
-    <h1> Name: {name}
-    Email: {email}
-    Phone number: {phone}
-    Message: {message} </h1>
-    """
+
 
 if __name__ == "__main__":
     app.run(debug=True)
