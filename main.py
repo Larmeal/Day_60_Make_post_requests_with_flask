@@ -5,9 +5,6 @@ import smtplib
 response = requests.get('https://api.npoint.io/c790b4d5cab58020d391')
 content = response.json()
 
-EMAIL = "armloveyou87252@gmail.com"
-PASSWORD = "armandsoft87"
-
 app = Flask(__name__)
 
 
